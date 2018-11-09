@@ -25,13 +25,13 @@ class Picture {
         pictureDesk.appendChild(newPicture)
       }
     }
-    xhr.send({ image: { src: this.url, title: this.title } });
+    xhr.send(JSON.stringify({ image: { src: this.url, title: this.title } }));
   }
 
   update() {
     var xhr = new XMLHttpRequest();
     xhr.open("PATCH", `http://localhost:3000/pictures/${this.id}`, true);
-    
+
     //Передает правильный заголовок в запросе
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function() {//Вызывает функцию при смене состояния.
@@ -40,7 +40,7 @@ class Picture {
       }
     }
 
-    xhr.send({ image: { src: this.url, id: this.id, title: this.title } });
+    xhr.send(JSON.stringify({ image: { src: this.url, id: this.id, title: this.title } }));
   }
 
   index() {
