@@ -11,9 +11,9 @@ class Picture {
     newPicture.setAttribute("class", "image-container")
 
     newPicture.innerHTML = `
-        <h2>"${this.title}"</h2>
-        <img src="${this.url}" class="img-thumbnail" alt="Responsive image">
-        <button data-id="5" class="btn btn-danger deleteButton" type="delete">X</button>`
+    <h2>"${this.title}"</h2>
+    <img src="${this.url}" class="img-thumbnail" alt="Responsive image">
+    <button data-id="5" class="btn btn-danger deleteButton" type="delete">X</button>`
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", 'http://localhost:3000/pictures', true);
@@ -31,7 +31,7 @@ class Picture {
   update() {
     var xhr = new XMLHttpRequest();
     xhr.open("PATCH", `http://localhost:3000/pictures/${this.id}`, true);
-
+    
     //Передает правильный заголовок в запросе
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function() {//Вызывает функцию при смене состояния.
@@ -41,8 +41,6 @@ class Picture {
     }
 
     xhr.send({ image: { src: this.url, id: this.id, title: this.title } });
-    }
-
   }
 
   index() {
