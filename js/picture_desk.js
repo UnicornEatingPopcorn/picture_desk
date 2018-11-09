@@ -1,5 +1,5 @@
 class Picture {
-  constructor(url, id, title){
+  constructor(url, title, id){
     this.url = url;
     this.id = id;
     this.title = title;
@@ -11,12 +11,12 @@ class Picture {
     newPicture.setAttribute("class", "image-container")
 
     newPicture.innerHTML = `
-    <h2>"${this.title}"</h2>
+    <h2>${this.title}</h2>
     <img src="${this.url}" class="img-thumbnail" alt="Responsive image">
     <button data-id="5" class="btn btn-danger deleteButton" type="delete">X</button>`
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", 'http://localhost:3000/pictures', true);
+    xhr.open("POST", 'http://localhost:3000/pictures.json', true);
 
     //Передает правильный заголовок в запросе
     xhr.setRequestHeader("Content-type", "application/json");
@@ -25,12 +25,12 @@ class Picture {
         pictureDesk.appendChild(newPicture)
       }
     }
-    xhr.send(JSON.stringify({ image: { src: this.url, title: this.title } }));
+    xhr.send(JSON.stringify({ picture: { src: this.url, title: this.title } }));
   }
 
   update() {
     var xhr = new XMLHttpRequest();
-    xhr.open("PATCH", `http://localhost:3000/pictures/${this.id}`, true);
+    xhr.open("PATCH", `http://localhost:3000/pictures.json/${this.id}`, true);
 
     //Передает правильный заголовок в запросе
     xhr.setRequestHeader("Content-type", "application/json");
@@ -40,12 +40,12 @@ class Picture {
       }
     }
 
-    xhr.send(JSON.stringify({ image: { src: this.url, id: this.id, title: this.title } }));
+    xhr.send(JSON.stringify({ picture: { src: this.url, id: this.id, title: this.title } }));
   }
 
   index() {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", 'http://localhost:3000/pictures', true);
+    xhr.open("GET", 'http://localhost:3000/pictures.json', true);
 
     //Передает правильный заголовок в запросе
     xhr.setRequestHeader("Content-type", "application/json");
@@ -64,7 +64,7 @@ class Picture {
 
   delete() {
     var xhr = new XMLHttpRequest();
-    xhr.open("DELETE", `http://localhost:3000/pictures/${this.id}`, true);
+    xhr.open("DELETE", `http://localhost:3000/pictures.json/${this.id}`, true);
 
     //Передает правильный заголовок в запросе
     xhr.setRequestHeader("Content-type", "application/json");
@@ -82,7 +82,8 @@ let addButton = document.getElementById('addButton');
 addButton.onclick = function() {
   event.preventDefault();
   let url = document.getElementById('url').value
-  let picture = new Picture(url);
+  let title = document.getElementById('title').value
+  let picture = new Picture(url, title);
   picture.create();
 }
 
