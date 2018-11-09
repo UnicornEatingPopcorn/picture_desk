@@ -1,4 +1,12 @@
-.img-thumbnail {
-  max-width: 50% !important
+.image-container {
+  width: 400px;
   height: auto;
+  position: relative;
+  margin-top: 30px;
+}
+
+.deleteButton {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
