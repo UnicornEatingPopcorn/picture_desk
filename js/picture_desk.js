@@ -1,7 +1,8 @@
 class Picture {
-  constructor(url, id){
+  constructor(url, id, title){
     this.url = url;
     this.id = id;
+    this.title = title;
   }
 
   create() {
@@ -10,46 +11,43 @@ class Picture {
     newPicture.setAttribute("class", "image-container")
 
     newPicture.innerHTML = `
+        <h2>"${this.title}"</h2>
         <img src="${this.url}" class="img-thumbnail" alt="Responsive image">
         <button data-id="5" class="btn btn-danger deleteButton" type="delete">X</button>`
 
-    pictureDesk.appendChild(newPicture)
-
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", 'http://localhost:3000/user_requests', true);
+    xhr.open("POST", 'http://localhost:3000/pictures', true);
 
     //Передает правильный заголовок в запросе
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function() {//Вызывает функцию при смене состояния.
       if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 201) {
-        let serverResponse = JSON.parse(xhr.response);
-        this.index(serverResponse);
-        // Запрос завершен. Здесь можно обрабатывать результат.
+        pictureDesk.appendChild(newPicture)
       }
     }
-    xhr.send(JSON.stringify(this.allValues()));
+    xhr.send({ image: { src: this.url, title: this.title } });
   }
 
-  update(request) {
+  update() {
     var xhr = new XMLHttpRequest();
-    xhr.open("PATCH", `http://localhost:3000/user_requests/${this.id}`, true);
+    xhr.open("PATCH", `http://localhost:3000/pictures/${this.id}`, true);
 
     //Передает правильный заголовок в запросе
     xhr.setRequestHeader("Content-type", "application/json");
     xhr.onreadystatechange = function() {//Вызывает функцию при смене состояния.
       if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-        let updatedRequest = JSON.parse(xhr.response);
+        let updatedPicture = JSON.parse(xhr.response);
       }
     }
 
-    xhr.send(JSON.stringify(request));
+    xhr.send({ image: { src: this.url, id: this.id, title: this.title } });
     }
 
   }
 
   index() {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", 'http://localhost:3000/user_requests', true);
+    xhr.open("GET", 'http://localhost:3000/pictures', true);
 
     //Передает правильный заголовок в запросе
     xhr.setRequestHeader("Content-type", "application/json");
