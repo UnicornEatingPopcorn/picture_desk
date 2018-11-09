@@ -55,7 +55,7 @@ class Picture {
       if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
         var pictureIndex = JSON.parse(xhr.response)
         pictureIndex.forEach(function(element) {
-          this.index(element);
+          // this.index(element);
         })
 
         // Запрос завершен. Здесь можно обрабатывать результат.
