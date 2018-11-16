@@ -1,16 +1,23 @@
 .image-container {
   width: 400px;
-  height: auto;
-  position: relative;
   margin-top: 30px;
+
 }
 
 .deleteButton {
   position: absolute;
   right: 0;
   top: 0;
+  width: 50px;
 }
 
-.btn {
-  width: 100%
+.editTitle, .okButton {
+
+  display: none;
+}
+
+.image-wrapper {
+  height: auto;
+  position: relative;
+  margin-top: 10px;
 }
