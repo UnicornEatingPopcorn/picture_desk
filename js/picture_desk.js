@@ -30,7 +30,7 @@ class Picture {
 
 
     newPicture.innerHTML = `
-    <h2><button class="btn btn-base-color editButton"><i class="fas fa-edit"></i></button>
+    <h2><button class="btn btn-dark editButton"><i class="fas fa-edit"></i></button>
     <button class="btn btn-success okButton">OK</button>
     <span class="pictureTitle"> ${this.title}</span></h2>
 

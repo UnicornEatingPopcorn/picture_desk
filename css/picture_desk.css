@@ -24,3 +24,7 @@
   position: relative;
   margin-top: 10px;
 }
+
+body {
+  background: url('../public/background.png');
+}
