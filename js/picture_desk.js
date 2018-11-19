@@ -30,10 +30,14 @@ class Picture {
 
 
     newPicture.innerHTML = `
-    <h2><button class="btn btn-info editButton"><i class="fas fa-edit"></i></button><button class="btn btn-success okButton">OK</button><span class="pictureTitle"> ${this.title}</span></h2>
+    <h2><button class="btn btn-base-color editButton"><i class="fas fa-edit"></i></button>
+    <button class="btn btn-success okButton">OK</button>
+    <span class="pictureTitle"> ${this.title}</span></h2>
+
     <input type="text" class="form-control editTitle">
-    <div class="image-wrapper"><img src="${this.src}" class="img-thumbnail" alt="Responsive image">
-    <button class="btn btn-danger deleteButton" type="delete">X</button></div>`;
+    <div class="image-wrapper"><img src="${this.src}" class="img-fluid" alt="Responsive image">
+    <button class="btn btn-danger deleteButton" type="delete">X</button></div>
+    `;
 
     pictureDesk.appendChild(newPicture);
   }
@@ -52,7 +56,7 @@ class Picture {
         const okButton = imageContainer.querySelector('.okButton');
 
         okButton.style.display = 'none';
-        imageContainer.querySelector('.editButton').style.display = 'block';
+        imageContainer.querySelector('.editButton').style.display = 'inline-block';
         imageContainer.querySelector('.editTitle').style.display = 'none';
         imageContainer.querySelector('.pictureTitle').innerText = picture.title;
       }
@@ -122,7 +126,7 @@ document.querySelector('.images').addEventListener('click', (event) => {
     const imageContainer = editTitle.closest('.image-container');
 
     editTitle.style.display = 'none';
-    imageContainer.querySelector('.okButton').style.display = 'block';
+    imageContainer.querySelector('.okButton').style.display = 'inline-block';
     imageContainer.querySelector('.editTitle').style.display = 'block';
   }
 

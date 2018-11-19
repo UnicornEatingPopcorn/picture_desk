@@ -1,7 +1,10 @@
 .image-container {
-  width: 400px;
+  width: 375px;
   margin-top: 30px;
-
+  float: left;
+  margin-right: 30px;
+  height: 313px;
+  overflow: hidden;
 }
 
 .deleteButton {
@@ -9,10 +12,10 @@
   right: 0;
   top: 0;
   width: 50px;
+  padding: 5px 0 !important;
 }
 
 .editTitle, .okButton {
-
   display: none;
 }
 
